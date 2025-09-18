@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecymDemo - Realidad Aumentada Industrial</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="Assets/visor.webp">
+    <link rel="shortcut icon" type="image/webp" href="Assets/visor.webp">
+    <link rel="apple-touch-icon" href="Assets/visor.webp">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" as="script">
+    <link rel="preload" href="Assets/rack3.glb" as="fetch" crossorigin>
+    <link rel="preload" href="styles.css" as="style">
+    
+    <!-- Model Viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Meta tags básicos -->
+    <meta name="description" content="RecymDemo - Experiencia de Realidad Aumentada Industrial. Visualiza modelos 3D en tu espacio con tecnología AR avanzada.">
+    <meta name="keywords" content="realidad aumentada, AR, industrial, 3D, modelo, LatAR, tecnología">
+    <meta name="author" content="LatAR">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dem-rack.netlify.app">
+    <meta property="og:title" content="RecymDemo - Realidad Aumentada Industrial">
+    <meta property="og:description" content="Experiencia de Realidad Aumentada Industrial. Visualiza modelos 3D en tu espacio con tecnología AR avanzada.">
+    <meta property="og:image" content="https://dem-rack.netlify.app/Assets/cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="RecymDemo - Experiencia AR Industrial">
+    <meta property="og:site_name" content="RecymDemo">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dem-rack.netlify.app">
+    <meta name="twitter:title" content="RecymDemo - Realidad Aumentada Industrial">
+    <meta name="twitter:description" content="Experiencia de Realidad Aumentada Industrial. Visualiza modelos 3D en tu espacio con tecnología AR avanzada.">
+    <meta name="twitter:image" content="https://dem-rack.netlify.app/Assets/cover.jpg">
+    <meta name="twitter:image:alt" content="RecymDemo - Experiencia AR Industrial">
+    
+    <!-- Meta tags para AR -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RecymDemo">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+    <meta name="msapplication-TileImage" content="Assets/visor.webp">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "RecymDemo",
+        "description": "Experiencia de Realidad Aumentada Industrial. Visualiza modelos 3D en tu espacio con tecnología AR avanzada.",
+        "url": "https://dem-rack.netlify.app",
+        "applicationCategory": "ARApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "LatAR",
+            "url": "https://lat-ar.com"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>RecymDemo</h1>
+                <span class="tagline">Industrial AR Experience</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- AR Button -->
+            <div class="ar-controls ar-controls-top">
+                <button id="ar-button" class="ar-button">
+                    <svg class="ar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    <span>Ver en tu espacio</span>
+                </button>
+            </div>
+
+            <!-- 3D Model Viewer -->
+            <div class="model-container">
+                <model-viewer 
+                    id="model-viewer"
+                    src="Assets/cargo.glb"
+                    ios-src="Assets/cargo.usdz#custom=https://bann-er.netlify.app//&customHeight=small"
+                    alt="Rack Industrial 3D Model"
+                    ar
+                    ar-modes="webxr scene-viewer quick-look"
+                    camera-controls
+                    auto-rotate
+                    rotation-per-second="25deg"
+                    environment-image="neutral"
+                    shadow-intensity="1.2"
+                    shadow-softness="0.6"
+                    exposure="1.1"
+                    tone-mapping="neutral"
+                    loading="eager"
+                    reveal="auto"
+                    disable-zoom
+                    interaction-policy="allow-when-focused"
+                    quick-look-browsers="safari chrome">
+                    
+                    <!-- Loading indicator mejorado -->
+                    <div class="loading" slot="poster">
+                        <!-- Skeleton loading -->
+                        <div class="skeleton-container">
+                            <div class="skeleton-model"></div>
+                            <div class="skeleton-details">
+                                <div class="skeleton-line skeleton-title"></div>
+                                <div class="skeleton-line skeleton-subtitle"></div>
+                                <div class="skeleton-line skeleton-text"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress bar -->
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span id="progress-percentage">0%</span>
+                                <span id="progress-status">Iniciando carga...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Loading spinner -->
+                        <div class="loading-spinner"></div>
+                        <p id="loading-text">Cargando modelo 3D...</p>
+                    </div>
+                    
+                    <!-- Error fallback -->
+                    <div class="error" slot="error">
+                        <p>Error al cargar el modelo 3D</p>
+                        <button onclick="location.reload()">Reintentar</button>
+                    </div>
+                </model-viewer>
+                
+                <!-- Botón Cotizar - Solo visible en Android AR -->
+                <div id="quote-button-container" class="quote-button-container">
+                    <button id="quote-button" class="quote-button">
+                        <svg class="quote-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            <path d="M13 8H7"/>
+                            <path d="M17 12H7"/>
+                        </svg>
+                        <span>Cotizar esta pieza</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-link">Powered by LatAR • Industrial 4.0 Experience</p>
+        </footer>
+    </div>
+    <script defer type="text/javascript">
+        const onQuickLookButtonTapped = (event) => {
+          window.location.assign("https://wa.link/my0crk");
+        };
+        document
+          .querySelector("model-viewer")
+          .addEventListener("quick-look-button-tapped", onQuickLookButtonTapped);
+      </script>
+      <script defer type="text/javascript">
+        const linkElement = document.getElementById("ar-link");
+        linkElement.addEventListener(
+          "message",
+          function (event) {
+            if (event.data == "_apple_ar_quicklook_button_tapped") {
+              window.location.href = "https://wa.link/my0crk";
+            }
+          },
+          false
+        );
+      </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+    "name": "RecymDemo - Realidad Aumentada Industrial",
+    "short_name": "RecymDemo",
+    "description": "Experiencia de Realidad Aumentada Industrial. Visualiza modelos 3D en tu espacio con tecnología AR avanzada.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#0a0a0a",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "es",
+    "dir": "ltr",
+    "categories": ["productivity", "utilities", "business"],
+    "icons": [
+        {
+            "src": "Assets/visor.webp",
+            "sizes": "192x192",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "Assets/visor.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "Assets/cover.jpg",
+            "sizes": "1280x720",
+            "type": "image/jpeg",
+            "form_factor": "wide",
+            "label": "RecymDemo AR Experience"
+        }
+    ],
+    "features": [
+        "Realidad Aumentada",
+        "Modelos 3D",
+        "Experiencia Industrial",
+        "Cross-platform"
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "launch_handler": {
+        "client_mode": "focus-existing"
+    }
+}
